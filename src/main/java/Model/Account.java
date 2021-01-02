@@ -1,6 +1,7 @@
 package Model;
 
 public class Account {
+    private int id;
     private String username;
     private String password;
     private String email;
@@ -16,6 +17,14 @@ public class Account {
         this.email = email;
         this.country = country;
         this.bankAccountNumber = bankAccountNumber;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {

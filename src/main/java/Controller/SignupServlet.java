@@ -23,7 +23,7 @@ public class SignupServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.sendRedirect("signup.jsp");
     }
 
     @Override
@@ -39,11 +39,13 @@ public class SignupServlet extends HttpServlet {
         String country = request.getParameter("country");
         Account account = new Account(username,password,email,bankAccountID,country);
         if (new AccountDAOImplement().insertAccount(account) == 1){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
+            request.setAttribute("message", "Done");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("signup/signup.jsp");
+            dispatcher.forward(request,response);
         }else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("signup.jsp");
-            dispatcher.forward(request, response);
+            request.setAttribute("message", "Wrong input try again");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("signup/signup.jsp");
+            dispatcher.forward(request,response);
         }
     }
 }

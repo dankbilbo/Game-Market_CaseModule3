@@ -28,6 +28,7 @@ public class AccountDAOImplement implements AccoutnDAOInterface {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 String country = rs.getString("country");
@@ -37,6 +38,7 @@ public class AccountDAOImplement implements AccoutnDAOInterface {
                 account.setEmail(email);
                 account.setBankAccountNumber(bankAccountId);
                 account.setCountry(country);
+                account.setId(id);
             }
         } catch (SQLException e) {
             e.printStackTrace();

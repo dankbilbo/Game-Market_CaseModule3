@@ -8,10 +8,21 @@ public class Game {
     private int id;
     private String appType;
     private String name;
-    private int developerID;
-    private int publisherID;
+    private String developer;
+    private String publisher;
     private LocalDate releasedDate;
-    private long price;
+    private Double price;
+
+
+    public Game(int id, String appType, String name, String developer, String publisher, LocalDate releasedDate, Double price) {
+        this.id = id;
+        this.appType = appType;
+        this.name = name;
+        this.developer = developer;
+        this.publisher = publisher;
+        this.releasedDate = releasedDate;
+        this.price = price;
+    }
 
     public int getId() {
         return id;
@@ -33,20 +44,20 @@ public class Game {
         this.name = name;
     }
 
-    public int getDeveloperID() {
-        return developerID;
+    public String getDeveloper() {
+        return developer;
     }
 
-    public void setDeveloperID(int developerID) {
-        this.developerID = developerID;
+    public void setDeveloper(String developer) {
+        this.developer = developer;
     }
 
-    public int getPublisherID() {
-        return publisherID;
+    public String getPublisher() {
+        return publisher;
     }
 
-    public void setPublisherID(int publisherID) {
-        this.publisherID = publisherID;
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
     }
 
     public LocalDate getReleasedDate() {
@@ -57,11 +68,11 @@ public class Game {
         this.releasedDate = releasedDate;
     }
 
-    public long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }
