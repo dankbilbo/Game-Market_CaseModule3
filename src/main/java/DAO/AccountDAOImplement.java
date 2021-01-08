@@ -20,25 +20,27 @@ public class AccountDAOImplement implements AccoutnDAOInterface {
         return connection;
     }
     @Override
-    public Account getAccount(String username) {
+    public Account getAccount(String username,String password) {
         Account account = new Account();
         try {
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(Keywords.SELECT_ACCOUNT);
             preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String password = rs.getString("password");
                 String email = rs.getString("email");
                 String country = rs.getString("country");
                 String bankAccountId = rs.getString("bankAccountId");
+                String role = rs.getString("role");
                 account.setUsername(username);
                 account.setPassword(password);
                 account.setEmail(email);
                 account.setBankAccountNumber(bankAccountId);
                 account.setCountry(country);
                 account.setId(id);
+                account.setRole(role);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,6 +59,7 @@ public class AccountDAOImplement implements AccoutnDAOInterface {
             preparedStatement.setString(3,account.getEmail());
             preparedStatement.setString(4,account.getCountry());
             preparedStatement.setString(5,account.getBankAccountNumber());
+            preparedStatement.setString(6,account.getRole());
             resultUpdate = preparedStatement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();

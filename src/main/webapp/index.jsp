@@ -1,39 +1,20 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: admin
-  Date: 12/28/2020
-  Time: 6:49 PM
+  Date: 1/4/2021
+  Time: 9:19 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>$Title$</title>
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
-<%--/////////////////////////////////////////--%>
-<c:if test='${requestScope["message"] != null}'>
-<p>${requestScope["message"]}</p>
-</c:if>
-<form action="/app" method="post" id="loginForm">
-  <label for="user">Username</label>
-  <input type="text" name="user" id="user" placeholder="username">
-  <label for="password"></label>
-  <input type="password" name="password" id="password" placeholder="password">
-  <button type="submit" id="login">login</button>
-</form>
-    <a href="signup/signup.jsp">signup</a>
-<%--/////////////////////////////////////////////--%>
-<script>
-  let username = document.getElementById("username");
-  let password = document.getElementById("password");
-  let loginForm = document.getElementById("loginForm");
-  loginForm.addEventListener("submit", (e) => {
-    if (username.value.length < 0) {
-      e.preventDefault();
-      alert("nhap lai");
-    }
-  });
-</script>
+<body>
+<div align="center" class="btn-group" role="group" aria-label="Basic outlined example">
+    <button  align="center" type="button" class="btn btn-outline-primary"><a href="/login/login.jsp">LOGIN</a></button>
+</div>
 </body>
 </html>

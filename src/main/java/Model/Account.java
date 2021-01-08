@@ -7,16 +7,18 @@ public class Account {
     private String email;
     private String country;
     private String bankAccountNumber;
+    private String role;
 
     public Account() {
     }
 
-    public Account(String username, String password, String email, String country, String bankAccountNumber) {
+    public Account(String username, String password, String email, String country, String bankAccountNumber,String role) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.country = country;
         this.bankAccountNumber = bankAccountNumber;
+        this.role = role;
     }
 
     public int getId() {
@@ -65,5 +67,13 @@ public class Account {
 
     public void setBankAccountNumber(String bankAccountNumber) {
         this.bankAccountNumber = bankAccountNumber;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

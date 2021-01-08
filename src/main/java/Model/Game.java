@@ -12,9 +12,13 @@ public class Game {
     private String publisher;
     private LocalDate releasedDate;
     private Double price;
+    private int discount;
+    private int numberUserOwned;
 
+    public Game() {
+    }
 
-    public Game(int id, String appType, String name, String developer, String publisher, LocalDate releasedDate, Double price) {
+    public Game(int id, String appType, String name, String developer, String publisher, LocalDate releasedDate, Double price, int discount) {
         this.id = id;
         this.appType = appType;
         this.name = name;
@@ -22,12 +26,16 @@ public class Game {
         this.publisher = publisher;
         this.releasedDate = releasedDate;
         this.price = price;
+        this.discount = discount;
     }
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id){
+        this.id = id;
+    }
     public String getAppType() {
         return appType;
     }
@@ -74,5 +82,21 @@ public class Game {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public int getNumberUserOwned() {
+        return numberUserOwned;
+    }
+
+    public void setNumberUserOwned(int numberUserOwned) {
+        this.numberUserOwned = numberUserOwned;
     }
 }

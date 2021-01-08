@@ -1,8 +1,7 @@
 package Controller;
 
-import Model.Account;
 import DAO.AccountDAOImplement;
-import Service.AccountServiceImplement;
+import Model.Account;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,39 +12,43 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/app")
+@WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
-    private AccountServiceImplement accountService;
     private AccountDAOImplement accountDAO;
     @Override
     public void init() throws ServletException {
-        accountService = new AccountServiceImplement();
         accountDAO = new AccountDAOImplement();
     }
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        Account account = (Account)session.getAttribute("account");
+        if (account.getRole().equals("member")){
+            resp.sendRedirect("/app");
+        }else{
+            resp.sendRedirect("/admin");
+        }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("user");
-        String password = request.getParameter("password");
-        boolean isadmin = username.equals("admin") && password.equals("admin") ;
-        boolean isUser = accountService.validateLogin(username,password);
-        if (isadmin){
-            response.sendRedirect("app/adminController.jsp");
-        }else if(isUser){
-            HttpSession session = request.getSession();
-            session.setAttribute("username",username);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("app/homepage.jsp");
-//            response.sendRedirect("app/homepage.jsp");
-            dispatcher.forward(request,response);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        Account account = accountDAO.getAccount(username,password);
+        if (account != null){
+            HttpSession session = req.getSession();
+            session.setAttribute("account",account);
+            String role = account.getRole();
+            if (role.equals("member")){
+                resp.sendRedirect("/app");
+            }else{
+                resp.sendRedirect("/admin");
+            }
         }else{
-            request.setAttribute("message", "Wrong username or password !!!");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("http://localhost:8080/");
-            dispatcher.forward(request,response);
+            req.setAttribute("message", "wrong username or password");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("login/login.jsp");
+            dispatcher.forward(req,resp);
         }
-
     }
 }

@@ -2,7 +2,6 @@ package Controller;
 
 import DAO.AccountDAOImplement;
 import Model.Account;
-import Service.AccountServiceImplement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,10 +14,10 @@ import java.nio.channels.AcceptPendingException;
 
 @WebServlet(urlPatterns = "/signup")
 public class SignupServlet extends HttpServlet {
-    private AccountServiceImplement accountService;
+    AccountDAOImplement accountDAO;
     @Override
     public void init() throws ServletException {
-        accountService = new AccountServiceImplement();
+        accountDAO = new AccountDAOImplement();
     }
 
     @Override
@@ -37,7 +36,8 @@ public class SignupServlet extends HttpServlet {
         String email = request.getParameter("email");
         String bankAccountID = request.getParameter("bankAccountID");
         String country = request.getParameter("country");
-        Account account = new Account(username,password,email,bankAccountID,country);
+        String role = request.getParameter("role");
+        Account account = new Account(username,password,email,bankAccountID,country,role);
         if (new AccountDAOImplement().insertAccount(account) == 1){
             request.setAttribute("message", "Done");
             RequestDispatcher dispatcher = request.getRequestDispatcher("signup/signup.jsp");

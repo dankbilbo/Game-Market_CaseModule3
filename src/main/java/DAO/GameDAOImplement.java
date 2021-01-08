@@ -3,9 +3,18 @@ package DAO;
 import Const.Keywords;
 import Model.Game;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class GameDAOImplement implements GameDAOInterface {
     protected Connection getConnection() {
@@ -22,12 +31,12 @@ public class GameDAOImplement implements GameDAOInterface {
     }
 
     @Override
-    public ArrayList<Game> getAllGame() {
+    public ArrayList<Game> getAllGame(String query) {
         ArrayList<Game> games = new ArrayList<>();
         try {
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(Keywords.SELECT_GAMES);
+            ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
                 int id = rs.getInt(1);
                 String appType = rs.getString(2);
@@ -36,7 +45,9 @@ public class GameDAOImplement implements GameDAOInterface {
                 double price = rs.getDouble(5);
                 String developerName = rs.getString(6);
                 String publisherName = rs.getString(7);
-                Game game = new Game(id,appType,name,developerName,publisherName,releasedDate,price);
+                int discount = rs.getInt(8);
+                price = price * discount / 100;
+                Game game = new Game(id,appType,name,developerName,publisherName,releasedDate,price,discount);
                 games.add(game);
             }
 
@@ -79,4 +90,37 @@ public class GameDAOImplement implements GameDAOInterface {
     public boolean updateGame(int id, Game game) throws SQLException {
         return false;
     }
+
+    @Override
+    public ArrayList<Game> getGamesGroupBy(String query) {
+        ArrayList<Game> games = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()){
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+                LocalDate releasedDate = (LocalDate) rs.getObject(3);
+                int numberOwned = rs.getInt(4);
+                double price = rs.getDouble(5);
+                int discount = rs.getInt(6);
+                price = price * discount / 100;
+                Game game = new Game();
+                game.setId(id);
+                game.setName(name);
+                game.setDiscount(discount);
+                game.setReleasedDate(releasedDate);
+                game.setNumberUserOwned(numberOwned);
+                game.setPrice(price);
+                games.add(game);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return games;
+    }
+
+
 }
