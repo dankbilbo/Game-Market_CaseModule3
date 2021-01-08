@@ -12,21 +12,21 @@ DAO/AccoutnDAOInterface.java
  DAO.AccoutnDAOInterface
 Controller/SignupServlet.java
  Controller.SignupServlet
-Controller/LoginServlet.java
- Controller.LoginServlet
-Controller/AdminFilter.java
- Controller.AdminFilter
+Model/Account.java
+ Model.Account
+Model/Order.java
+ Model.Order
 Const/Keywords.java
  Const.Keywords
 Model/Game.java
  Model.Game
 Service/GameServiceInterface.java
  Service.GameServiceInterface
-Controller/AppFilter.java
- Controller.AppFilter
+Controller/LoginServlet.java
+ Controller.LoginServlet
 DAO/AccountDAOImplement.java
  DAO.AccountDAOImplement
-Model/Account.java
- Model.Account
-Model/Order.java
- Model.Order
+Controller/AdminFilter.java
+ Controller.AdminFilter
+Controller/AppFilter.java
+ Controller.AppFilter

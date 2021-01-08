@@ -24,6 +24,10 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Account account = (Account)session.getAttribute("account");
+        if (account == null){
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/login/login.jsp");
+            dispatcher.forward(req,resp);
+        }
         if (account.getRole().equals("member")){
             resp.sendRedirect("/app");
         }else{

@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="text-center p-t-136">
-                    <a class="txt2" href="signup/signup.jsp">
+                    <a class="txt2" href="http://localhost:8080/signup/signup.jsp">
                         Create your Account
                         <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                     </a>
