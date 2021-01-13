@@ -9,48 +9,22 @@ public class Keywords {
 
     public static final String SELECT_ACCOUNT = "select * from accounts where username=? and password =?;";
     public static final String INSERT_ACCOUNT = "insert into accounts" +
-            "(username,password,email,bankAccountId,country) " +
-            "value(?,?,?,?,?);";
-    public static final String SELECT_GAMES = "select * from games";
-    public static final String SELECT_10_TOP_SELLERS = "select games.id, games.name, games.releasedDate,count(games.id) as owned, games.price, games.discount" +
-            "from games" +
-            "join gameorderdetails as god on games.id = god.id" +
-            "join gameorder on gameorder.id = god.gameorderid" +
-            "where gameorder.daybought >= (now() - interval 7 day)" +
-            "group by games.id" +
-            "order by count(games.id) desc" +
-            "limit 10; ";
-    public static final String SELECT_All_TOP_SELLERS = "select games.id, games.name, games.releasedDate,count(games.id) as owned, games.price, games.discount" +
-            "from games" +
-            "join gameorderdetails as god on games.id = god.id" +
-            "join gameorder on gameorder.id = god.gameorderid" +
-            "where gameorder.daybought >= (now() - interval 7 day)" +
-            "group by games.id" +
-            "order by count(games.id) desc;" ;
-    public static final String SELECT_10_NEW_RELEASED_GAME = "select * " +
-            "from games " +
-            "where releasedDate >= (now() - interval 7 day) " +
-            "order by releasedDate desc" +
-            "limit 10;";
+            "(username,password,email,bankAccountId,country,role) " +
+            "value(?,?,?,?,?,?);";
+    public static final String UPDATE_ACCOUNT = "update accounts set username = ?, password = ?, email = ?, country = ? ,bankAccountId = ? ,role = ? where id = ?;";
+    public  static final String SELECT_ALL_GAMES = "select * from all_games;";
+    public static final String SELECT_GAME = "select * from all_games where id=?";
+    public static final String SELECT_GAME_BY_NAME = "select * from all_games where name like ?;";
+
+    public static final String SELECT_10_TOP_SELLERS_7_DAYS = "select * from top_sellers_7_days limit 10";
+    public static final String SELECT_TOP_SELLERS_ALL_TIME = "select * from top_sellers_all_time" ;
+    public static final String SELECT_10_NEW_RELEASED_GAME = "select * from new_released_games limit 10;";
     public static final String SELECT_ALL_GAMES_ORDER_BY_RELEASED_DATE = "select * from games order by releasedDate DESC;";
-    public static final String SELECT_10_HOT_RELEASED_GAMES = "select games.id, games.name,games.releasedDate,count(games.id) as owned, games.price, games.discount" +
-            "from games" +
-            "join gameorderdetails as god on god.gameid = games.id" +
-            "join gameorder on gameorder.id = god.gameorderid" +
-            "where gameorder.daybought >= (now() - interval 7 day)" +
-            "group by games.id" +
-            "order by owned desc"+
-            "limit 10;";
-    public static final String SELECT_10_HOT_UPCOMING_GAMES = "select games.id, games.name,games.releasedDate,count(games.id) as preordered, games.price, games.discount" +
-            "from games" +
-            "join gameorderdetails as god on god.gameid = games.id" +
-            "join gameorder on gameorder.id = god.gameorderid" +
-            "where games.releasedDate > now()" +
-            "group by games.id" +
-            "order by preordered desc" +
-            "limit 10;";
-    public static final String SELECT_ALL_UPCOMING_GAMES = "select * from games where releasedDate >= now();";
+    public static final String SELECT_10_HOT_RELEASED_GAMES = "select * from hot_released_games_7_days limit 10";
+    public static final String SELECT_10_HOT_UPCOMING_GAMES = "select * from top_upcoming_games limit 10;";
+    public static final String SELECT_ALL_UPCOMING_GAMES = "select * from games where releasedDate >= now() order by releasedDate asc;";
     public static final String INSERT_GAME = "insert into games" +
             "(appType,name,releasedDate,price,developerName,publisherName)" +
             "value(?,?,?,?,?,?);";
+    public static final String SELECT_ALL_COMPANY = "select * from company";
 }

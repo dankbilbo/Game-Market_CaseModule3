@@ -22,11 +22,12 @@ public class AppFilter implements Filter {
         HttpServletResponse resp= (HttpServletResponse) response;
         HttpSession session = req.getSession();
         Account account = (Account) session.getAttribute("account");
-        if (account == null ){
+        if (account == null){
             session.invalidate();
             resp.sendRedirect("/login");
         }else{
-            chain.doFilter(request,response);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/app");
+            dispatcher.forward(request,response);
         }
     }
 

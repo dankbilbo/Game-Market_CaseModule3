@@ -67,10 +67,25 @@ public class AccountDAOImplement implements AccoutnDAOInterface {
         return resultUpdate;
     }
 
-//    @Override
-//    public boolean updateAccount(String username, Account account) {
-//        return false;
-//    }
+    @Override
+    public int updateAccount(Account account) {
+        int resultUpdate = 0;
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(Keywords.UPDATE_ACCOUNT);
+            preparedStatement.setString(1,account.getUsername());
+            preparedStatement.setString(2,account.getPassword());
+            preparedStatement.setString(3,account.getEmail());
+            preparedStatement.setString(4,account.getCountry());
+            preparedStatement.setString(5,account.getBankAccountNumber());
+            preparedStatement.setString(6,account.getRole());
+            preparedStatement.setInt(7,account.getId());
+            resultUpdate = preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return resultUpdate;
+    }
 
 
 }

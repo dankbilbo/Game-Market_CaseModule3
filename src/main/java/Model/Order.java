@@ -8,4 +8,5 @@ public class Order {
     private int gameId;
     private LocalDate dayBought;
     private String price;
+    
 }

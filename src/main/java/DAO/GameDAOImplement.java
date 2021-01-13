@@ -1,20 +1,11 @@
 package DAO;
 
 import Const.Keywords;
+import Model.Company;
 import Model.Game;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class GameDAOImplement implements GameDAOInterface {
     protected Connection getConnection() {
@@ -31,23 +22,26 @@ public class GameDAOImplement implements GameDAOInterface {
     }
 
     @Override
-    public ArrayList<Game> getAllGame(String query) {
+    public ArrayList<Game> getAllGame() {
         ArrayList<Game> games = new ArrayList<>();
         try {
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
+            ResultSet rs = statement.executeQuery(Keywords.SELECT_ALL_GAMES);
             while (rs.next()){
-                int id = rs.getInt(1);
-                String appType = rs.getString(2);
-                String name = rs.getString(3);
-                LocalDate releasedDate = (LocalDate) rs.getObject(4);
-                double price = rs.getDouble(5);
-                String developerName = rs.getString(6);
-                String publisherName = rs.getString(7);
-                int discount = rs.getInt(8);
-                price = price * discount / 100;
-                Game game = new Game(id,appType,name,developerName,publisherName,releasedDate,price,discount);
+                int id = rs.getInt("id");
+                String appType = rs.getString("appType");
+                String name = rs.getString("name");
+                Date releasedDate = rs.getDate("releasedDate");
+                double price = rs.getDouble("price");
+                int discount = rs.getInt("discount");
+                int developerId = rs.getInt("developerId");
+                String devName = rs.getString("devname");
+                int publisherId = rs.getInt("publisherId");
+                String pubName = rs.getString("pubname");
+                String logoURl = rs.getString("logoURL");
+                String imgURL = rs.getString("imgURL");
+                Game game = new Game(id,appType,name,new Company(developerId,devName),new Company(publisherId,pubName),releasedDate,price,discount,logoURl,imgURL);
                 games.add(game);
             }
 
@@ -67,8 +61,8 @@ public class GameDAOImplement implements GameDAOInterface {
             preparedStatement.setString(2, game.getName());
             preparedStatement.setObject(3, game.getReleasedDate());
             preparedStatement.setDouble(4, game.getPrice());
-            preparedStatement.setString(5, game.getDeveloper());
-            preparedStatement.setString(6, game.getPublisher());
+            preparedStatement.setString(5, game.getDeveloper().getName());
+            preparedStatement.setString(6, game.getPublisher().getName());
             resultUpdate = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,7 +72,30 @@ public class GameDAOImplement implements GameDAOInterface {
 
     @Override
     public Game selectGame(int id) {
-        return null;
+        Game game = null;
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(Keywords.SELECT_GAME);
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                String appType = rs.getString("appType");
+                String name = rs.getString("name");
+                Date releasedDate = rs.getDate("releasedDate");
+                double price = rs.getDouble("price");
+                int discount = rs.getInt("discount");
+                int developerId = rs.getInt("developerId");
+                String devName = rs.getString("devname");
+                int publisherId = rs.getInt("publisherId");
+                String pubName = rs.getString("pubname");
+                String logoURl = rs.getString("logoURL");
+                String imgURL = rs.getString("imgURL");
+                game = new Game(id,appType,name,new Company(developerId,devName),new Company(publisherId,pubName),releasedDate,price,discount,logoURl,imgURL);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return game;
     }
 
     @Override
@@ -99,13 +116,13 @@ public class GameDAOImplement implements GameDAOInterface {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
-                int id = rs.getInt(1);
-                String name = rs.getString(2);
-                LocalDate releasedDate = (LocalDate) rs.getObject(3);
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                Date releasedDate =  rs.getDate("releasedDate");
                 int numberOwned = rs.getInt(4);
-                double price = rs.getDouble(5);
-                int discount = rs.getInt(6);
-                price = price * discount / 100;
+                double price = rs.getDouble("price");
+                int discount = rs.getInt("discount");
+                price = price - price * discount / 100;
                 Game game = new Game();
                 game.setId(id);
                 game.setName(name);
@@ -122,5 +139,34 @@ public class GameDAOImplement implements GameDAOInterface {
         return games;
     }
 
+    @Override
+    public ArrayList<Game> getGamesByName(String name) {
+        ArrayList<Game> games = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(Keywords.SELECT_GAME_BY_NAME);
+            preparedStatement.setString(1, name);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                int id = rs.getInt("id");
+                name = rs.getString("name");
+                String appType = rs.getString("appType");
+                Date releasedDate = rs.getDate("releasedDate");
+                double price = rs.getDouble("price");
+                int discount = rs.getInt("discount");
+                int developerId = rs.getInt("developerId");
+                String devName = rs.getString("devname");
+                int publisherId = rs.getInt("publisherId");
+                String pubName = rs.getString("pubname");
+                String logoURl = rs.getString("logoURL");
+                String imgURL = rs.getString("imgURL");
+                Game game = new Game(id,appType,name,new Company(developerId,devName),new Company(publisherId,pubName),releasedDate,price,discount,logoURl,imgURL);
+                games.add(game);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return games;
+    }
 
 }

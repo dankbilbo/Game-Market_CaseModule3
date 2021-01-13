@@ -1,32 +1,40 @@
 Controller/AdminServlet.java
  Controller.AdminServlet
+Controller/LogoutServlet.java
+ Controller.LogoutServlet
 Controller/AppServlet.java
  Controller.AppServlet
 DAO/GameDAOImplement.java
  DAO.GameDAOImplement
 DAO/iOrderDAO.java
  DAO.iOrderDAO
+DAO/CompanyDAO.java
+ DAO.CompanyDAO
+Controller/LoginFilter.java
+ Controller.LoginFilter
+Controller/AccountServlet.java
+ Controller.AccountServlet
 DAO/GameDAOInterface.java
  DAO.GameDAOInterface
 DAO/AccoutnDAOInterface.java
  DAO.AccoutnDAOInterface
 Controller/SignupServlet.java
  Controller.SignupServlet
-Model/Account.java
- Model.Account
-Model/Order.java
- Model.Order
+Controller/LoginServlet.java
+ Controller.LoginServlet
+Controller/AdminFilter.java
+ Controller.AdminFilter
 Const/Keywords.java
  Const.Keywords
 Model/Game.java
  Model.Game
-Service/GameServiceInterface.java
- Service.GameServiceInterface
-Controller/LoginServlet.java
- Controller.LoginServlet
-DAO/AccountDAOImplement.java
- DAO.AccountDAOImplement
-Controller/AdminFilter.java
- Controller.AdminFilter
 Controller/AppFilter.java
  Controller.AppFilter
+DAO/AccountDAOImplement.java
+ DAO.AccountDAOImplement
+Model/Account.java
+ Model.Account
+Model/Company.java
+ Model.Company
+Model/Order.java
+ Model.Order

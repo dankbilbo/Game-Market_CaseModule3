@@ -12,7 +12,8 @@ public class Account {
     public Account() {
     }
 
-    public Account(String username, String password, String email, String country, String bankAccountNumber,String role) {
+    public Account(int id,String username, String password, String email, String country, String bankAccountNumber,String role) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;

@@ -26,7 +26,8 @@ public class AdminFilter implements Filter {
             session.invalidate();
             resp.sendRedirect("/login");
         }else{
-            chain.doFilter(request,response);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/admin");
+            dispatcher.forward(request,response);
         }
     }
 

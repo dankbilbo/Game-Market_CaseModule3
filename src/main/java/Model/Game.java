@@ -8,17 +8,22 @@ public class Game {
     private int id;
     private String appType;
     private String name;
-    private String developer;
-    private String publisher;
-    private LocalDate releasedDate;
+    private Company developer;
+    private Company publisher;
+    private Date releasedDate;
     private Double price;
+    private String logoURL;
+    private String imgURL;
     private int discount;
     private int numberUserOwned;
+    private int numberUserFollowed;
+    private int numberLiked;
+    private int numberWished;
 
     public Game() {
     }
 
-    public Game(int id, String appType, String name, String developer, String publisher, LocalDate releasedDate, Double price, int discount) {
+    public Game(int id, String appType, String name, Company developer, Company publisher, Date releasedDate, Double price, int discount,String logoURL, String imgURL) {
         this.id = id;
         this.appType = appType;
         this.name = name;
@@ -27,6 +32,8 @@ public class Game {
         this.releasedDate = releasedDate;
         this.price = price;
         this.discount = discount;
+        this.logoURL = logoURL;
+        this.imgURL = imgURL;
     }
 
     public int getId() {
@@ -52,27 +59,27 @@ public class Game {
         this.name = name;
     }
 
-    public String getDeveloper() {
+    public Company getDeveloper() {
         return developer;
     }
 
-    public void setDeveloper(String developer) {
+    public void setDeveloper(Company developer) {
         this.developer = developer;
     }
 
-    public String getPublisher() {
+    public Company getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(String publisher) {
+    public void setPublisher(Company publisher) {
         this.publisher = publisher;
     }
 
-    public LocalDate getReleasedDate() {
+    public Date getReleasedDate() {
         return releasedDate;
     }
 
-    public void setReleasedDate(LocalDate releasedDate) {
+    public void setReleasedDate(Date releasedDate) {
         this.releasedDate = releasedDate;
     }
 
@@ -98,5 +105,45 @@ public class Game {
 
     public void setNumberUserOwned(int numberUserOwned) {
         this.numberUserOwned = numberUserOwned;
+    }
+
+    public int getNumberUserFollowed() {
+        return numberUserFollowed;
+    }
+
+    public void setNumberUserFollowed(int numberUserFollowed) {
+        this.numberUserFollowed = numberUserFollowed;
+    }
+
+    public int getNumberLiked() {
+        return numberLiked;
+    }
+
+    public void setNumberLiked(int numberLiked) {
+        this.numberLiked = numberLiked;
+    }
+
+    public int getNumberWished() {
+        return numberWished;
+    }
+
+    public void setNumberWished(int numberWished) {
+        this.numberWished = numberWished;
+    }
+
+    public String getLogoURL() {
+        return logoURL;
+    }
+
+    public void setLogoURL(String logoURL) {
+        this.logoURL = logoURL;
+    }
+
+    public String getImgURL() {
+        return imgURL;
+    }
+
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
     }
 }

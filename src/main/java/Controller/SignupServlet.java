@@ -36,8 +36,9 @@ public class SignupServlet extends HttpServlet {
         String email = request.getParameter("email");
         String bankAccountID = request.getParameter("bankAccountID");
         String country = request.getParameter("country");
-        String role = request.getParameter("role");
-        Account account = new Account(username,password,email,bankAccountID,country,role);
+        String role = "member";
+        int id = 0;
+        Account account = new Account(id,username,password,email,bankAccountID,country,role);
         if (new AccountDAOImplement().insertAccount(account) == 1){
             request.setAttribute("message", "Done");
             RequestDispatcher dispatcher = request.getRequestDispatcher("signup/signup.jsp");

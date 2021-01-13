@@ -1,5 +1,7 @@
-package Service;
-
-public interface GameServiceInterface {
-    public void liveUpdateGame();
-}
+//package Service;
+//
+//import java.util.ArrayList;
+//
+//public interface GameServiceInterface {
+//    public ArrayList<String> getAllTypes();
+//}
