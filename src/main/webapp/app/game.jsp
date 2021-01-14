@@ -10,7 +10,6 @@
 <html>
 <head>
     <title>Title</title>
-    <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -23,7 +22,10 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background: url(https://wallpapercave.com/wp/wp5705473.png) no-repeat;background-size: 100%">
+<div style="display: flex; justify-content: flex-end">
+    <a href="/app" >HOMEPAGE</a>
+</div>
 <a href="/app?action=search&id=${requestScope["game"].getId()}">
 <img src="${requestScope["game"].getImgURL()}" ></a>
 <table class="table table-striped table-dark">

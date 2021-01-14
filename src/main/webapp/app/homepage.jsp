@@ -22,7 +22,10 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background: url(https://wallpapercave.com/wp/wp5705473.png) no-repeat;background-size: 100%">
+<div style="display: flex; justify-content: flex-end">
+    <a href="/app" >HOMEPAGE</a>
+</div>
 <div >
     <a href="/account?action=view">${sessionScope["account"].getUsername()}</a>
     <a href="/logout">Logout</a>
@@ -76,7 +79,7 @@
             </tr>
             <c:forEach items='${requestScope["tenHotReleasedGames"]}' var="hotReleasedGame">
                 <tr>
-                    <td><a href="/app?action=view&id=${hotReleasedGame.getId()}"><img src="${topSellerGame.getLogoURL()}" ></a></td>
+                    <td><a href="/app?action=view&id=${hotReleasedGame.getId()}"><img src="${hotReleasedGame.getLogoURL()}" ></a></td>
                     <td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;"><a href="/app?action=view&id=${hotReleasedGame.getId()}">${hotReleasedGame.getName()}</a></td>
                     <td>${hotReleasedGame.getReleasedDate()}</td>
                     <td align="center">${topSellerGame.getPrice() - topSellerGame.getPrice() * topSellerGame.getDiscount()}$</td>
@@ -98,7 +101,7 @@
             </tr>
             <c:forEach items='${requestScope["tenTopUpcomingGames"]}' var="topUpcomingGame">
                 <tr>
-                    <td><a href="/app?action=view&id=${topUpcomingGame.getId()}"><img src="${topSellerGame.getLogoURL()}" ></a></td>
+                    <td><a href="/app?action=view&id=${topUpcomingGame.getId()}"><img src="${topUpcomingGame.getLogoURL()}" ></a></td>
                     <td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;"><a href="/app?action=view&id=${topUpcomingGame.getId()}">${topUpcomingGame.getName()}</a></td>
                     <td>${topUpcomingGame.getNumberUserOwned()}</td>
                     <td align="center">${topUpcomingGame.getReleasedDate()}</td>

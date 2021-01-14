@@ -10,7 +10,10 @@
 <head>
     <title>Title</title>
 </head>
-<body>
+<body style="background: url(https://wallpapercave.com/wp/wp5705473.png) no-repeat;background-size: 100%">
+<div style="display: flex; justify-content: flex-end">
+    <a href="/app" >HOMEPAGE</a>
+</div>
 <h1>admin logged</h1>
 </body>
 </html>

@@ -9,14 +9,19 @@
 <html>
 <head>
     <title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
-<table width="100%" align="center">
+<body style="background: url(https://wallpapercave.com/wp/wp5705473.png) no-repeat;background-size: 100%">
+<div style="display: flex; justify-content: flex-end">
+    <a href="/app" >HOMEPAGE</a>
+</div>
+<table class="table table-striped table-dark" align="center">
     <tr>
         <td colspan="2">${sessionScope["account"].getUsername()}</td>
     </tr>
     <tr>
-        <td>Account</td>
+        <td>Email</td>
         <td>${sessionScope["account"].getEmail()}</td>
     </tr>
     <tr>
@@ -29,5 +34,5 @@
     </tr>
 </table>
 <a href="/account?action=updatepass">Change Info</a>
-</body>
+</body >
 </html>

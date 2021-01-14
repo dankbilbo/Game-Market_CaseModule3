@@ -10,9 +10,14 @@
 <html>
 <head>
     <title>Game Owned</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
-<table>
+<body style="background: url(https://wallpapercave.com/wp/wp5705473.png) no-repeat;background-size: 100%">
+<div style="display: flex; justify-content: flex-end">
+    <a href="/app" >HOMEPAGE</a>
+</div>
+<table class="table table-striped table-dark" align="center">
     <tr>
         <th></th>
         <th>Game</th>

@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
 </head>
-<body>
+<body style="background: url(https://wallpapercave.com/wp/wp5705473.png) no-repeat;background-size: 100%">
 <c:if test='${requestScope["message"] != null}'>
     <h1>${requestScope["message"]}</h1>
 </c:if>
