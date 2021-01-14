@@ -28,6 +28,9 @@
     <a href="/logout">Logout</a>
 </div>
 <div>
+    <a href="/app?action=viewgamesowned">Game Owned</a>
+</div>
+<div>
     <form action="/app?action=search" method="post">
     <input type="text" name="namesearch">
     Search app by name: <input type="submit">
@@ -45,17 +48,17 @@
             </colgroup>
             <tbody>
             <tr>
-                <th>ID</th>
+                <th></th>
                 <th>Name</th>
                 <th>Bought</th>
                 <th>Price</th>
             </tr>
             <c:forEach items='${requestScope["tenTopSellers"]}' var="topSellerGame">
                 <tr>
-                    <td><a href="/app?action=view&id=${topSellerGame.getId()}">${topSellerGame.getId()}</a></td>
+                    <td><a href="/app?action=view&id=${topSellerGame.getId()}"><img src="${topSellerGame.getLogoURL()}" ></a></td>
                     <td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;"><a href="/app?action=view&id=${topSellerGame.getId()}" >${topSellerGame.getName()}</a></td>
                     <td>${topSellerGame.getNumberUserOwned()}</td>
-                    <td>${topSellerGame.getPrice()}</td>
+                    <td align="center">${topSellerGame.getPrice() - topSellerGame.getPrice() * topSellerGame.getDiscount()}$</td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -66,17 +69,17 @@
         <table class="table table-striped table-dark" width="100%" class="">
             <caption>Hot New Released</caption>
             <tr>
-                <th>ID</th>
+                <th></th>
                 <th>Name</th>
                 <th>ReleasedDate</th>
                 <th>Price</th>
             </tr>
             <c:forEach items='${requestScope["tenHotReleasedGames"]}' var="hotReleasedGame">
                 <tr>
-                    <td><a href="/app?action=view&id=${hotReleasedGame.getId()}">${hotReleasedGame.getId()}</a></td>
+                    <td><a href="/app?action=view&id=${hotReleasedGame.getId()}"><img src="${topSellerGame.getLogoURL()}" ></a></td>
                     <td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;"><a href="/app?action=view&id=${hotReleasedGame.getId()}">${hotReleasedGame.getName()}</a></td>
                     <td>${hotReleasedGame.getReleasedDate()}</td>
-                    <td>${hotReleasedGame.getPrice()}</td>
+                    <td align="center">${topSellerGame.getPrice() - topSellerGame.getPrice() * topSellerGame.getDiscount()}$</td>
                 </tr>
             </c:forEach>
         </table>
@@ -88,17 +91,17 @@
         <table class="table table-striped table-dark">
             <caption>Top Upcoming</caption>
             <tr class="">
-                <th>ID</th>
+                <th></th>
                 <th>Name</th>
                 <th>Preordered</th>
                 <th>ReleasedDate</th>
             </tr>
             <c:forEach items='${requestScope["tenTopUpcomingGames"]}' var="topUpcomingGame">
                 <tr>
-                    <td><a href="/app?action=view&id=${topUpcomingGame.getId()}">${topUpcomingGame.getId()}</a></td>
+                    <td><a href="/app?action=view&id=${topUpcomingGame.getId()}"><img src="${topSellerGame.getLogoURL()}" ></a></td>
                     <td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;"><a href="/app?action=view&id=${topUpcomingGame.getId()}">${topUpcomingGame.getName()}</a></td>
                     <td>${topUpcomingGame.getNumberUserOwned()}</td>
-                    <td>${topUpcomingGame.getReleasedDate()}</td>
+                    <td align="center">${topUpcomingGame.getReleasedDate()}</td>
                 </tr>
             </c:forEach>
         </table>

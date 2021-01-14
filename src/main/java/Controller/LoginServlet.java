@@ -2,6 +2,7 @@ package Controller;
 
 import DAO.AccountDAOImplement;
 import Model.Account;
+import Model.Game;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
@@ -52,6 +54,7 @@ public class LoginServlet extends HttpServlet {
         if (account != null) {
             HttpSession session = req.getSession();
             session.setAttribute("account", account);
+            session.setAttribute("cart", new ArrayList<Game>());
             String role = account.getRole();
             if (role.equals("member")) {
                 RequestDispatcher dispatcher = req.getRequestDispatcher("/app");

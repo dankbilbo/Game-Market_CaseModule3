@@ -14,4 +14,6 @@ public interface GameDAOInterface {
     public boolean updateGame(int id,Game game)throws SQLException;
     public ArrayList<Game> getGamesGroupBy(String query);
     public ArrayList<Game> getGamesByName(String name);
+    public ArrayList<Game> searchGames(String query);
+    public ArrayList<String> getAllAppTypes();
 }

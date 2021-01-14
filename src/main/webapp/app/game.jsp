@@ -25,7 +25,7 @@
 </head>
 <body>
 <a href="/app?action=search&id=${requestScope["game"].getId()}">
-<img src="${requestScope["game"].getLogoURL()}" ></a>
+<img src="${requestScope["game"].getImgURL()}" ></a>
 <table class="table table-striped table-dark">
     <caption>${requestScope["game"].getName()}</caption>
     <tr>
@@ -50,11 +50,11 @@
     </tr>
     <tr>
         <td>Developer</td>
-        <td><a href="/app?action=search&id=${requestScope["game"].getId()}">${requestScope["game"].getDeveloper().getName()}</a></td>
+        <td><a href="/app?action=search&dev=${requestScope["game"].getDeveloper().getId()}">${requestScope["game"].getDeveloper().getName()}</a></td>
     </tr>
     <tr>
         <td>Publisher</td>
-        <td><a href="/app?action=search&id=${requestScope["game"].getId()}">${requestScope["game"].getPublisher().getName()}</a></td>
+        <td><a href="/app?action=search&dev=${requestScope["game"].getDeveloper().getId()}">${requestScope["game"].getPublisher().getName()}</a></td>
     </tr>
 </table>
 </body>

@@ -21,7 +21,7 @@ public class AccountDAOImplement implements AccoutnDAOInterface {
     }
     @Override
     public Account getAccount(String username,String password) {
-        Account account = new Account();
+        Account account = null;
         try {
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(Keywords.SELECT_ACCOUNT);
@@ -29,6 +29,7 @@ public class AccountDAOImplement implements AccoutnDAOInterface {
             preparedStatement.setString(2, password);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
+                account = new Account();
                 int id = rs.getInt("id");
                 String email = rs.getString("email");
                 String country = rs.getString("country");

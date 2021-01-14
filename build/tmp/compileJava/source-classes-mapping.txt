@@ -6,8 +6,6 @@ Controller/AppServlet.java
  Controller.AppServlet
 DAO/GameDAOImplement.java
  DAO.GameDAOImplement
-DAO/iOrderDAO.java
- DAO.iOrderDAO
 DAO/CompanyDAO.java
  DAO.CompanyDAO
 Controller/LoginFilter.java

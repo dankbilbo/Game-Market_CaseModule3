@@ -1,8 +1,8 @@
-package DAO;
-
-import java.util.ArrayList;
-
-public interface iOrderDAO {
-//    public ArrayList<Order>
-//    public boolean addOrder
-}
+//package DAO;
+//
+//
+//import Model.Order;
+//
+//public interface iOrderDAO {
+//    public boolean addOrder;
+//}

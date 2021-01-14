@@ -7,6 +7,6 @@ public class Order {
     private int userId;
     private int gameId;
     private LocalDate dayBought;
-    private String price;
+    private double price;
     
 }
